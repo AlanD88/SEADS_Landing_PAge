@@ -1,0 +1,245 @@
+
+{{extend 'layout.html'}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="/landing_page/static/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/landing_page/static/css/PR_landing.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://github.com/kswedberg/jquery-smooth-scroll/blob/master/jquery.smooth-scroll.min.js"></script> <!-- For smooth scroll not used yet-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#promo-video").hide();
+
+            //Auto play video on click
+            $('#video-btn').on('click', function(ev){
+                $("#promo-video")[0].src += "?autoplay=1";
+                ev.preventDefault();
+            });
+
+            var options = [
+                {selector: '#page_two', offset: 500, callback: 'Materialize.toast("This is our ScrollFire Demo!", 1500 )' },
+                {selector: '#PF_row_one', offset: 500, callback: function() {
+                    $('#PF_row_one').addClass('animated fadeInUp');
+                    //fade_first_div();
+                } }
+                ];
+                Materialize.scrollFire(options);
+        });
+    </script>
+    <script>
+        function show_video() {
+            $("#video-btn").hide();
+            $("#promo-video").show();
+            $("#home").removeAttr("background-image").addClass("cover")
+        }
+    </script>
+
+    <!-- No longer need, keep for reference for now
+    <script>
+        function fade_first_div() {
+            //document.getElementById("PF_row_one").style.opacity = '1';
+            document.getElementById("PF_row_one").className += "animated fadeInUp"
+        }
+    </script>
+    -->
+
+    <!-- Smooth page scroll code for clicking navigation buttons Current not used, may be used later-->
+    <script>
+    $('.smooth').on('click', function() {
+        $.smoothScroll({
+            scrollElement: $('body'),
+            scrollTarget: '#' + this.id
+        });
+
+        return false;
+    });
+    </script>
+    <script>
+        // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '480',
+          width: '720',
+          videoId: 'srpIxqNF2o4',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+          $("#player").hide();
+      }
+
+    </script>
+    <!----------------------------------------------------------------------------------------------->
+    <meta charset="UTF-8">
+
+    <!--navigation bar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-left image-logo" href="#"><img src="/landing_page/static/images/SEADS-logo-small.png"></a>
+            </div>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Login <span class="glyphicon glyphicon-log-in"></span></a></li>
+                        <li><a href="#">Register <span class="glyphicon glyphicon-user"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <title>SEADS</title>
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div id="home">
+
+            <div class="row page_one">
+                <div class="col-sm-3"></div>
+
+                <div class="col-sm-8">
+                    <div id="player"></div>
+                    <!--
+                    <div id="video-btn"><button class="btn btn-primary" onclick="show_video()">Play Video</button></div>
+                    <iframe id="promo-video" width="720" height="480" src="https://www.youtube.com/embed/srpIxqNF2o4" frameborder="0" allowfullscreen></iframe>
+                    -->
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+    </div>
+    <div id="page_two">
+        <div class="row text-head" style="text-align: center">Awards</div>
+        <div class="row text-row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2" id="left-text-block">
+                <p></p>
+                <img src="/landing_page/static/images/CES.png" height="50px" width="100px">
+                <br>
+                <h4>IEEE CES 2016</h4>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="center-text-block col-sm-2">
+                <p></p>
+                <img src="/landing_page/static/images/NSF.png" height="50px" width="200px">
+                <br>
+                <h4>NSF Innovation Corps Award</h4>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="right-text-block col-sm-2">
+                <p></p>
+                <img src="/landing_page/static/images/TechCrunch.png" height="50px" width="200px">
+                <br>
+                <h4>Winner of Techcrunch Hackathon ZTE Award 2016</h4>
+            </div>
+        </div>
+    </div>
+    <div id="page_three">
+        <div class="row product-description">
+            <h1 class="PD-header">sapien convallis sodales</h1>
+        </div>
+
+
+
+        <div class="product-features">
+            <div class="row PF-one" id="PF_row_one">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <h3>Etiam tristique</h3>
+                    <p>mi sodales eros condimentum, sit amet malesuada augue vulputate. Pellentesque felis sapien. <br><br>
+                    Elementum vitae mollis quis, gravida ut lectus. Nam lorem est, elementum.
+                    Vivamus viverra quis sem ut ullamcorper. Vestibulum ante ipsum primis in faucibus orci luctus et
+                        ultrices posuere cubilia Curae; Sed accumsan congue blandit. Nam vel elementum justo. Sed nunc velit,
+                        accumsan tincidunt ex eget, tincidunt efficitur tortor. </p>
+                    <button class="btn btn-primary">Learn More</button>
+                </div>
+                <div class="col-sm-1"></div>
+                    <div class="PF-one-image col-sm-3">
+                        <img id="hideme" src="/landing_page/static/images/PR-user-interaction.png" height="400px" width="500px">
+                    </div>
+            </div>
+            <div class="row PF-two">
+                <div class="col-sm-1"></div>
+                <div class="PF-two-image col-sm-3">
+                    <img src="/landing_page/static/images/PR-animate.png" height="300px" width="550px">
+                </div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <h3>magna efficitur</h3>
+                    <p>Fusce lorem ante, pulvinar eget facilisis vitae, molestie ac diam. Sed quis lacus augue. Vestibulum et laoreet diam.
+                    Aenean malesuada elit vitae lectus blandit, quis condimentum justo imperdiet.
+                    Donec egestas velit sit amet orci blandit malesuada vel a magna. Vestibulum ante ipsum primis in
+                        faucibus orci luctus et ultrices posuere cubilia Curae; Donec maximus nulla id sem tristique eleifend.
+                        Cras volutpat metus quis purus scelerisque egestas. Sed est nunc, ultrices at pulvinar ac, interdum gravida risus.</p>
+                    <button class="btn btn-primary">Learn More</button>
+                </div>
+            </div>
+            <div class="row PF-three">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <h3>Morbi cursus efficitur</h3>
+                    <p>pellentesque. Pellentesque id consectetur metus, suscipit efficitur est. Duis tincidunt sapien
+                        orci, eu interdum orci suscipit vitae. Morbi eget viverra massa, ut porttitor augue. Fusce dui
+                        massa, accumsan vel dolor et, auctor dictum lorem. Proin sit amet urna neque. Sed molestie mi
+                        eget risus tincidunt, id ultricies risus ultrices. Donec orci tellus, tempus non nisl nec,
+                        semper vulputate felis. Pellentesque augue quam, tristique ut nibh id, egestas viverra purus.
+                        Nam turpis ex, viverra vitae efficitur at, cursus ut lorem. Cras ultricies viverra dui, quis viverra nibh vulputate eu.</p>
+                    <button class="btn btn-primary">Learn More</button>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="PF-one-image col-sm-3">
+                    <img src="/landing_page/static/images/consumption.png" height="300px" width="600px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="page_four">
+        <div class="row how-it-works">
+            <div class="col-sm-4"></div>
+                <div class="col-sm-4" style="text-align: center">
+                    <h2 style="text-align: center">How SEADS Works</h2>
+                    <p>Proin luctus tellus nec nisi dapibus, id pharetra tortor commodo. Phasellus non est quis est accumsan
+                        malesuada. Morbi facilisis lorem id tellus auctor tempus. Mauris ac luctus urna. Cras et quam urna.</p>
+                    <button class="btn btn-primary">Learn More</button>
+                </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
